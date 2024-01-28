@@ -1,5 +1,5 @@
 # Use Maven for building the application
-FROM maven:3.8.4-openjdk-17-slim AS build
+FROM maven:3.8.4-openjdk-11-slim AS build
 
 # Set the working directory in the Docker image
 WORKDIR /app
@@ -12,7 +12,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Use OpenJDK for running the application
-FROM openjdk:17-jre-slim
+FROM openjdk:11-jre-slim
 
 # Set the working directory in the Docker image
 WORKDIR /app
