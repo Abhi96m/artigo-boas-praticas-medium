@@ -22,29 +22,27 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Compile with Maven
+    - name: Clean
+      run: mvn clean 
+
+    - name: Validate
+      run: mvn validate 
+
+    - name: Compile
       run: mvn compile
-
-    - name: Test with Maven
-      run: mvn test
-
-    - name: Package with Maven
+      
+    - name: Test Compile
+      run: mvn test-compile
+      
+    - name: Package
       run: mvn package
 
-    - name: Install with Maven
+    - name: Verify
+      run: mvn verify
+
+    - name: Install
       run: mvn install
 
     - name: Build Docker image
-      run: docker build -t 22mcc20091/22mcc20091:${{ github.sha }} .
+      run: docker build -t yourusername/yourappname:${{ github.sha }} .
 
-    - name: Clean with Maven
-      run: mvn clean
-
-    - name: Generate site with Maven
-      run: mvn site
-
-    - name: Deploy site with Maven
-      run: mvn site-deploy
-
-    - name: Verify with Maven
-      run: mvn verify
